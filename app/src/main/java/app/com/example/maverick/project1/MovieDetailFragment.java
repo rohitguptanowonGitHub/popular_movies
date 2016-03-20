@@ -42,7 +42,7 @@ public class MovieDetailFragment extends Fragment {
         plotSynopsis.setText(movie.getPlotSynopsis());
         //moviePoster.setImageBitmap(movie.getMoviePosterBitmap());
         Picasso.with(getActivity()).load(movie.getMoviePoster()).into(moviePoster);
-        
+
         return rootView;
     }
 }

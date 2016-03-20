@@ -1,0 +1,77 @@
+<ScrollView
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="app.com.example.maverick.project1.MovieDetailFragment"
+        tools:showIn="@layout/activity_movie_detail"
+        android:weightSum="1">
+
+        <ImageView
+            android:layout_width="@dimen/imageView_width"
+            android:layout_height="@dimen/imageView_height"
+            android:id="@+id/movie_poster"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="7dp"
+            android:layout_gravity="left|center_vertical"
+            android:layout_below="@+id/title"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="60dp"
+            android:text="New Text"
+            android:id="@+id/release_date"
+            android:textSize="24sp"
+            android:layout_alignTop="@+id/movie_poster"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Text"
+            android:id="@+id/vote_average"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginTop="45dp"
+            android:layout_below="@+id/release_date"
+            android:layout_alignLeft="@+id/release_date"
+            android:layout_alignStart="@+id/release_date" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Text"
+            android:id="@+id/plot"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="15dp"
+            android:layout_below="@+id/movie_poster"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignRight="@+id/title"
+            android:layout_alignEnd="@+id/title" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:text="New Text"
+            android:id="@+id/title"
+            android:background="@color/titleBackground"
+            android:textSize="34sp"
+            android:textColor="@color/titleText"
+            android:paddingLeft="15dp"
+            android:gravity="center_vertical"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+    </RelativeLayout>
+</ScrollView>

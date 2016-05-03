@@ -10,7 +10,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements SimpleImageRecyclerViewAdapter.CallBack{
+    static boolean mTwoPane ;
+    Bundle args;
+    private static final String DETAILFRAGMENT_TAG ="DF_TAG";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,14 +22,47 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+
+
+        if(findViewById(R.id.movie_detail_container) != null){
+            mTwoPane = true;
+
+            if(savedInstanceState == null){
+                android.support.v4.app.FragmentManager fm = getSupportFragmentManager();
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.movie_detail_container, new MovieDetailFragment(),DETAILFRAGMENT_TAG)
+                        .commit();
+            }
+        } else {
+            mTwoPane =false;
+        }
+
+        final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        if(!mTwoPane)
+            fab.setVisibility(View.INVISIBLE);
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+
+                android.support.v4.app.FragmentManager fm = getSupportFragmentManager();
+                MovieDetailFragment fragment = (MovieDetailFragment) fm.findFragmentById(R.id.movie_detail_container);
+                long inserted = fragment.addMovie();
+                if (inserted > 0){
+                    Snackbar.make(view, "Added to Favourites !", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                    fab.setImageResource(R.drawable.ic_favorite_black_24dp);
+                }
+                else if(inserted < 0)
+                    Snackbar.make(view, "Error !", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                else {
+                    Snackbar.make(view, "Already in Favourites !", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                }
             }
         });
+
     }
 
     @Override
@@ -51,4 +87,23 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    public void onItemSelected(int index) {
+        if(mTwoPane){
+            args =new Bundle();
+                args.putInt(MovieDetailFragment.DETAIL_INDEX, index);
+
+            MovieDetailFragment fragment = new MovieDetailFragment();
+            fragment.setArguments(args);
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.movie_detail_container,fragment,DETAILFRAGMENT_TAG)
+                    .commit();
+        }else {
+            Intent intent = new Intent(this,MovieDetail.class)
+                    .putExtra(MovieDetailFragment.DETAIL_INDEX,index);
+            startActivity(intent);
+        }
+    }
+
 }

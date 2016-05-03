@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:xliff="http://schemas.android.com/tools">
     <string name="app_name">Popular Movies</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_settings">SettingsActivity</string>
@@ -6,15 +6,27 @@
     <!--For pref_general -->
     <string name="pref_sort_key" translatable="false">sort</string>
     <string name="pref_sort_label">Sort By</string>
-    <string name="pref_sort_default">Most Popular</string>
+    <string name="pref_sort_default">popular</string>
+    <string name="pref_sort_fav">favourite</string>
     <string-array name="pref_sort_entries">
         <item>Most Popular</item>
         <item>Highest Rated</item>
+        <item>Favourites</item>
     </string-array>
     <string-array name="pref_sort_values">
         <item>popular</item>
         <item>top_rated</item>
+        <item>favourite</item>
     </string-array>
     <string name="title_activity_movie_detail">MovieDetail</string>
 
+    <string name="action_share">Share</string>
+
+    <string name="rating_format"><xliff:g id="rate">%1.2f</xliff:g>/10</string>
+
+    <string name="review_tag">Reviews</string>
+
+    <string name="plot_tag">Plot</string>
+
+    <string name="trailer_tag">Trailers</string>
 </resources>

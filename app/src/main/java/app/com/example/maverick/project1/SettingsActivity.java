@@ -1,6 +1,5 @@
 package app.com.example.maverick.project1;
 
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.ListPreference;
 import android.preference.Preference;
@@ -44,5 +43,6 @@ public class SettingsActivity extends PreferenceActivity implements Preference.O
 
         return true;
     }
+
 
 }
